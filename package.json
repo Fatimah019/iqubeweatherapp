@@ -37,6 +37,7 @@
             "react-app/jest"
         ]
     },
+    "proxy": "https://api.weatherstack.com",
     "browserslist": {
         "production": [
             ">0.2%",
