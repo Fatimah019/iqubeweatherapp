@@ -1,0 +1,31 @@
+.note_field_container {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 0rem 1rem;
+    width: 70%;
+}
+
+.note_input_field {
+    background: transparent;
+    width: 95%;
+    margin: auto;
+    padding: 1rem 0rem;
+    outline: none;
+    border: none;
+}
+
+.note_result {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 70%;
+    padding: 0.2rem 0.5rem;
+    list-style: none;
+    margin: 1rem 0rem;
+}
+.note_result li p {
+    text-align: right;
+}
