@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './index.css';
-import { AiOutlineSearch } from 'react-icons/all';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectWeather, searchWeatherByLocation, ParamsProps } from '../../store/weatherRedux/weather_reducer';
-import { useHistory } from 'react-router-dom';
 
 type Props = {
     searchValue?: string;
 };
 
 const WeatherNote: React.FC<Props> = ({ searchValue }) => {
-    const dispatch = useDispatch();
     const [inputValue, setInputValue] = React.useState('');
-    const history = useHistory();
 
     const addNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

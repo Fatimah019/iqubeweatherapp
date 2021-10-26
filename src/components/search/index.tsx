@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import './index.css';
-import { AiOutlineSearch } from 'react-icons/all';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectWeather, searchWeatherByLocation, ParamsProps } from '../../store/weatherRedux/weather_reducer';
+import { useDispatch } from 'react-redux';
+import { searchWeatherByLocation, ParamsProps } from '../../store/weatherRedux/weather_reducer';
 import { useHistory } from 'react-router-dom';
 
 type Props = {

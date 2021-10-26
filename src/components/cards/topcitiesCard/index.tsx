@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './index.css';
 import { useDispatch } from 'react-redux';
-import { fetchWeather, ParamsProps, searchWeatherByLocation } from '../../../store/weatherRedux/weather_reducer';
+import { ParamsProps, searchWeatherByLocation } from '../../../store/weatherRedux/weather_reducer';
 
 interface Props {
     icon_color?: Node;
@@ -13,6 +13,7 @@ interface Props {
 const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
     const history = useHistory();
     const dispatch = useDispatch();
+
     const getCityWeather = (location_name: string) => {
         history.push(`/city/${location_name}`);
         dispatch(
