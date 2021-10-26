@@ -8,10 +8,12 @@ const Routes: React.FC<{}> = () => {
     return (
         <Router>
             <Header />
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/city/:query" component={SearchedPage} />
-            </Switch>
+            <div style={{ marginTop: '3rem' }}>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/city/:query" component={SearchedPage} />
+                </Switch>
+            </div>
         </Router>
     );
 };

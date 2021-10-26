@@ -42,10 +42,10 @@ const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
                 <img src="/assets/icons/star.png" alt="" />
             </div>
             <div className="top_cities_card_temp_value">
-                <h1>
+                <h2>
                     {lat_value}
                     <sub>lat</sub>
-                </h1>
+                </h2>
                 <p>{location_name}</p>
             </div>
         </div>

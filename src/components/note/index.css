@@ -29,3 +29,10 @@
 .note_result li p {
     text-align: right;
 }
+
+@media (max-width: 600px) {
+    .note_field_container,
+    .note_result {
+        width: 100%;
+    }
+}

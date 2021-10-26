@@ -12,10 +12,14 @@ const Header: React.FC<{}> = () => {
                 </div>
                 <nav className="nav header_right">
                     <div className="header_right_left">
-                        <sup>o</sup>C
+                        <div>
+                            <sup>o</sup>C
+                        </div>
                     </div>
                     <div className="header_right_right">
-                        <sup>o</sup>F
+                        <div>
+                            <sup>o</sup>F
+                        </div>
                     </div>
                 </nav>
             </div>

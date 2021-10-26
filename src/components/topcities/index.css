@@ -25,7 +25,7 @@
         grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
     }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .city_card_container {
         grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
     }

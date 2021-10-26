@@ -49,18 +49,9 @@ export type ParamsProps = {
     query: string;
 };
 
-export const fetchWeather = () =>
-    apiCallBegan({
-        url: `http://api.weatherstack.com/current?access_key=deb0771b0f95f1789fc550e442d7b826`,
-        method: 'GET',
-        onSuccess: fetchWeatherSuccess.type,
-        onStart: fetchWeatherStart.type,
-        onError: fetchWeatherFailed.type,
-    });
-
 export const searchWeatherByLocation = ({ query }: ParamsProps) =>
     apiCallBegan({
-        url: `http://api.weatherstack.com/current?access_key=deb0771b0f95f1789fc550e442d7b826&query=${query}`,
+        url: `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY_1}&query=${query}`,
         method: 'GET',
         onSuccess: fetchWeatherSuccess.type,
         onStart: fetchWeatherStart.type,
@@ -70,7 +61,7 @@ export const searchWeatherByLocation = ({ query }: ParamsProps) =>
 export const fetchTopCities = () =>
     apiCallBegan({
         url: `https://dataservice.accuweather.com/locations/v1/topcities/${50}?apikey=${
-            process.env.REACT_APP_API_KEY_2
+            process.env.REACT_APP_MY_API_KEY_2
         }`,
         method: 'GET',
         onSuccess: fetchTopCitiesSuccess.type,

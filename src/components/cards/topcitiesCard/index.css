@@ -26,5 +26,6 @@
     text-align: right;
 }
 .top_cities_card_temp_value {
+    margin: 0;
     text-align: center;
 }

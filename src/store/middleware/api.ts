@@ -16,6 +16,7 @@ export const api =
         try {
             if (onStart) dispatch({ type: onStart });
             const response = await axios.request({
+                baseURL: '',
                 url,
                 method,
             });

@@ -10,7 +10,6 @@ const SearchedPage: React.FC<{}> = () => {
     const weatherInfo = useSelector(selectWeather);
     const loading = useSelector(selectLoading);
 
-    console.log(weatherInfo);
     return (
         <div>
             {weatherInfo?.current === undefined ? (

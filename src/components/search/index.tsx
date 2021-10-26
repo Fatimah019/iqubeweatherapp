@@ -26,6 +26,7 @@ const Search: React.FC<Props> = ({ searchValue }) => {
     useEffect(() => {
         !inputValue && history.push(`/`);
     });
+
     return (
         <form className="search_container" onSubmit={handleSearch}>
             <input
