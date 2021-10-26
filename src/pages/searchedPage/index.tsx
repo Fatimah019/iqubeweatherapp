@@ -24,17 +24,17 @@ const SearchedPage: React.FC<{}> = () => {
                             city_name={weatherInfo?.request?.query}
                             date_updated={weatherInfo?.current?.observation_time}
                             time_updated={weatherInfo?.current?.observation_time}
-                            weather_cloud_cover={'Cloud Cover' + ' ' + '-' + '' + weatherInfo?.current?.cloudcover}
+                            weather_cloud_cover={`Cloud Cover - ${weatherInfo?.current?.cloudcover}`}
                             weather_icons={weatherInfo?.current?.weather_icons}
                             weather_description={weatherInfo?.current?.weather_descriptions}
-                            weather_feels_like={'Feels Like' + ' ' + '-' + '' + weatherInfo?.current?.feelslike}
+                            weather_feels_like={`Feels Like - ${weatherInfo?.current?.feelslike}`}
                             temperature_value={weatherInfo?.current?.temperature}
                             humidity={weatherInfo?.current?.humidity}
                             visibility={weatherInfo?.current?.visibility}
                             pressure={weatherInfo?.current?.pressure}
-                            wind_speed={'Speed' + ' ' + '-' + '' + weatherInfo?.current?.wind_speed}
-                            wind_direction={'Direction' + ' ' + '-' + '' + weatherInfo?.current?.wind_dir}
-                            wind_angle={'Angle' + ' ' + '-' + '' + weatherInfo?.current?.wind_degree}
+                            wind_speed={`Speed - ${weatherInfo?.current?.wind_speed}`}
+                            wind_direction={`Direction - ${weatherInfo?.current?.wind_dir}`}
+                            wind_angle={`Angle - ${weatherInfo?.current?.wind_degree}`}
                         />
                     ) : (
                         <CustomLoader visible={loading.isLoading} />
