@@ -51,7 +51,7 @@ export type ParamsProps = {
 
 export const fetchWeather = () =>
     apiCallBegan({
-        url: `https://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY_1}`,
+        url: `http://api.weatherstack.com/current?access_key=deb0771b0f95f1789fc550e442d7b826`,
         method: 'GET',
         onSuccess: fetchWeatherSuccess.type,
         onStart: fetchWeatherStart.type,
@@ -60,7 +60,7 @@ export const fetchWeather = () =>
 
 export const searchWeatherByLocation = ({ query }: ParamsProps) =>
     apiCallBegan({
-        url: `https://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY_1}&query=${query}`,
+        url: `http://api.weatherstack.com/current?access_key=deb0771b0f95f1789fc550e442d7b826&query=${query}`,
         method: 'GET',
         onSuccess: fetchWeatherSuccess.type,
         onStart: fetchWeatherStart.type,
