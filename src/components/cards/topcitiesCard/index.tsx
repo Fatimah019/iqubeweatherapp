@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './index.css';
 import { useDispatch } from 'react-redux';
-import { ParamsProps, searchWeatherByLocation } from '../../../store/weatherRedux/weather_reducer';
+import { ParamsProps, searchWeatherByLocation} from '../../../store/weatherRedux/weather_reducer';
 
 interface Props {
     icon_color?: Node;
@@ -22,8 +22,13 @@ const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
             } as ParamsProps),
         );
     };
+    // const removeTop=()=>{
+    //     dispatch(removeTopCitiesSuccess(location_name))
+    // }
     return (
-        <div
+    <>
+    {/* <button onClick={()=>removeTop()}>remove</button> */}
+    <div
             className={
                 lat_value === 37
                     ? 'hot_card'
@@ -49,6 +54,7 @@ const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
                 <p>{location_name}</p>
             </div>
         </div>
+    </>
     );
 };
 

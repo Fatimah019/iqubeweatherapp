@@ -5,18 +5,13 @@ export enum WEATHER_ACTION_TYPES {
     GET_SEARCHED_CITY_WEATHER = 'GET_SEARCHED_CITY_WEATHER',
 }
 
-export enum WEATHER_TYPES {
-    FETCH_STARTED = 'FETCH_STARTED',
-    FETCH_SUCCESSFUL = 'FETCH_SUCCESSFUL',
-    FETCH_ERROR = 'FETCH_ERROR',
-}
-
 // TYPESCRIPT TYPES
 export type WeatherInitialState = {
     isLoading: boolean;
     error?: string;
     data?: WeatherInterface;
     topCitiesData?: TopCitiesWeatherInterface[];
+    weatherNote?:WeatherNoteInterface[]
 };
 
 export type WeatherInterface = {
@@ -24,8 +19,11 @@ export type WeatherInterface = {
     current: currentWeatherInterface;
     request: requestWeatherInterface;
 };
+export type WeatherNoteInterface = {
+    name: string;
+};
 export type TopCitiesWeatherInterface = {
-    temperature: string | null | number | undefined;
+    Key:string | null | undefined;
     EnglishName: string | null | number | undefined;
     GeoPosition: {
         Latitude: string | null | number | undefined;

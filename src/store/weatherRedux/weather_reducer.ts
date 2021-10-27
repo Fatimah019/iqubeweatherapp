@@ -1,4 +1,4 @@
-import { WeatherInitialState } from './weather_types';
+import {  WeatherInitialState } from './weather_types';
 import { RootState } from '../rootReducer';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apiCallBegan } from '../actions';
@@ -8,6 +8,7 @@ const initialState: WeatherInitialState = {
     data: undefined,
     error: undefined,
     topCitiesData: [],
+    weatherNote:[]
 };
 
 const weatherSlice = createSlice({
@@ -17,6 +18,17 @@ const weatherSlice = createSlice({
         fetchTopCitiesSuccess: (state, action: PayloadAction<[]>) => {
             state.topCitiesData = action.payload;
             state.isLoading = false;
+        },
+        removeTopCitiesSuccess: (state, action: PayloadAction<string>) => {
+            state.topCitiesData =state.topCitiesData?.filter((city)=> (city.Key) !== action.payload)
+        },
+        addNoteCitiesSuccess: (state, action: PayloadAction<any>) => {
+            // state.weatherNote= state.weatherNote?.push(action.payload)
+            // console.log(state.topCitiesData?.map(city=> city.cityWeatherNote.push(action.payload))
+            // state.topCitiesData = state.topCitiesData?.filter((city)=> (city.GeoPosition.Latitude) !== action.payload)
+        },
+        removeNoteCitiesSuccess: (state, action) => {
+            state.topCitiesData = state.topCitiesData?.filter((city)=> (city.GeoPosition.Latitude) !== action.payload)
         },
         fetchWeatherSuccess: (state, action: PayloadAction<any>) => {
             state.data = action.payload;
@@ -38,6 +50,7 @@ const weatherSlice = createSlice({
 
 export const {
     fetchTopCitiesSuccess,
+    removeTopCitiesSuccess,
     fetchWeatherSuccess,
     searchWeatherByLocationSuccess,
     fetchWeatherStart,
@@ -51,7 +64,8 @@ export type ParamsProps = {
 
 export const searchWeatherByLocation = ({ query }: ParamsProps) =>
     apiCallBegan({
-        url: `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY_1}&query=${query}`,
+        url:`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_WEATHER}&query=${query}`,
+        // url:`api.openweathermap.org/data/2.5/weather?q=${query}&appid=a1b2b7c571bbe827844b734e3f48850c`,
         method: 'GET',
         onSuccess: fetchWeatherSuccess.type,
         onStart: fetchWeatherStart.type,
@@ -61,7 +75,7 @@ export const searchWeatherByLocation = ({ query }: ParamsProps) =>
 export const fetchTopCities = () =>
     apiCallBegan({
         url: `https://dataservice.accuweather.com/locations/v1/topcities/${50}?apikey=${
-            process.env.REACT_APP_MY_API_KEY_2
+            process.env.REACT_APP_OTHER_API_KEY
         }`,
         method: 'GET',
         onSuccess: fetchTopCitiesSuccess.type,
