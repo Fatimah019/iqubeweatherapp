@@ -46,6 +46,7 @@ const SearchPage: React.FC<Props> = ({
                 <div className="search_page_header_right">
                     <img src="/assets/icons/cresent.png" alt="" />
                     <h3>{time_updated}</h3>
+                    <button>addToFav</button>
                 </div>
             </div>
             <div className="search_page_top">
