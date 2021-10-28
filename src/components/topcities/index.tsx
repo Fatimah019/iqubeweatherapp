@@ -28,7 +28,7 @@ const TopCities: React.FC<{}> = () => {
             <div className="city_card_container">
                 { weatherInfo?.slice(0, 5).sort((a:any, b)=> {return a.EnglishName?.localeCompare(b.EnglishName)})?.map((item) => {
                     return (
-                        <div key={item.Key}>
+                        <div key={item.Key} className="top_city_card">
                             <div className="close_icon">
                                 <AiOutlineCloseCircle onClick={()=>removeTop(item.Key)}/>
                             </div>
