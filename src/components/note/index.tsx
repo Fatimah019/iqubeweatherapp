@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import {useDispatch} from "react-redux"
 import {addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
@@ -9,7 +9,7 @@ import {AiOutlineCloseCircle} from "react-icons/all"
 const WeatherNote: React.FC<{}> = () => {
     const [inputValue, setInputValue] = React.useState('');
     const dispatch = useDispatch()
-    let notes = locastorage.get("notes")
+    let [notes, setNotes] = useState(locastorage.get("notes"))
 
     const addNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,15 +17,10 @@ const WeatherNote: React.FC<{}> = () => {
         setInputValue("")
     };
 
+
     const deleteNote = async (note_id: any) => {
-        // notes = await notes?.filter((id: number)=> !note_id.include(id))
-        let newNote = [...notes]
-        newNote.splice(1, note_id)
-        locastorage.removeItem("notes2")
-        // locastorage.set("notes2", notes)
-        // if(notes.length === 0){
-        //     locastorage.removeItem("notes")
-        // }
+        let newNote = notes?.filter((note: { id: any; })=> note.id !== note_id)
+        setNotes(newNote)
     };
   
     return (

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { ParamsProps, searchWeatherByLocation} from '../../../store/weatherRedux/weather_reducer';
 
 interface Props {
-    temp_value?: number | undefined | null | string;
+    temp_value?: number | undefined | null | string |any;
     location_name?: string | Node | undefined | null | any | number;
 }
 
@@ -24,7 +24,15 @@ const FavouriteCard: React.FC<Props> = ({ temp_value, location_name }) => {
     return (
     <>
     <div
-            className="favourite_card"
+           className={
+                temp_value >= 36
+                    ? 'hot_card'
+                    : temp_value <= 35
+                    ? 'normal_card'
+                    : temp_value <= 10
+                    ? 'cold_card'
+                    : 'no_category'
+            }
             onClick={() => getCityWeather(location_name as string)}
         >
             <div className="favourite_card_temp_icon">
