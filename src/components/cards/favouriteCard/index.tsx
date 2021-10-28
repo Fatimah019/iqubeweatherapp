@@ -26,12 +26,12 @@ const FavouriteCard: React.FC<Props> = ({ temp_value, location_name }) => {
     <div
            className={
                 temp_value >= 36
-                    ? 'hot_card'
+                    ? 'hot_favourite_card'
                     : temp_value <= 35
-                    ? 'normal_card'
+                    ? 'normal_favourite_card'
                     : temp_value <= 10
-                    ? 'cold_card'
-                    : 'no_category'
+                    ? 'cold_favourite_card'
+                    : 'no_favourite_category'
             }
             onClick={() => getCityWeather(location_name as string)}
         >

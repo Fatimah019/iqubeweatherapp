@@ -33,5 +33,6 @@
 @media screen and (max-width: 600px) {
     .city_card_container {
         grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+        justify-content: center
     }
 }

@@ -17,6 +17,9 @@ const WeatherNote: React.FC<{}> = () => {
         setInputValue("")
     };
 
+    // useEffect(()=>{
+    //     setNotes(locastorage.get("notes"))
+    // }, [notes])
 
     const deleteNote = async (note_id: any) => {
         let newNote = notes?.filter((note: { id: any; })=> note.id !== note_id)
