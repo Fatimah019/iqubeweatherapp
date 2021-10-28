@@ -29,7 +29,7 @@ const FavouriteCities: React.FC<{}> = () => {
                 <div className="favourite_city_card_container">
                     { 
                     
-                    favorites?.map((item:any, index:number) => {
+                    favorites?.sort((a:any, b: { data: { location: { name: any; }; }; })=> {return a.data.location.name.localeCompare(b.data.location.name)}).map((item:any, index:number) => {
                         return (
                             <div key={index}>
                                 {/* <AiOutlineCloseCircle onClick={()=>removeTop(item?.Key)}/> */}

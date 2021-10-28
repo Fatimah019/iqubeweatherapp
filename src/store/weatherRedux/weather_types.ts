@@ -26,9 +26,9 @@ export type WeatherNoteInterface = {
     note_description: string;
 };
 export type TopCitiesWeatherInterface = {
-    Key:string | null | undefined;
-    EnglishName: string | null | number | undefined;
-    GeoPosition: {
+    Key?:string | null | undefined;
+    EnglishName?: string | null  | undefined;
+    GeoPosition?: {
         Latitude: string | null | number | undefined;
     };
 };

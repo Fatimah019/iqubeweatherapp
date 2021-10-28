@@ -26,7 +26,7 @@ const TopCities: React.FC<{}> = () => {
                 <p>Top Cities</p>
             </div>
             <div className="city_card_container">
-                { weatherInfo?.slice(0, 5)?.map((item) => {
+                { weatherInfo?.slice(0, 5).sort((a:any, b)=> {return a.EnglishName?.localeCompare(b.EnglishName)})?.map((item) => {
                     return (
                         <div key={item.Key}>
                             <div className="close_icon">
@@ -34,7 +34,7 @@ const TopCities: React.FC<{}> = () => {
                             </div>
                            
                             <TopCitesCard 
-                             lat_value={item?.GeoPosition.Latitude} location_name={item?.EnglishName} />
+                             lat_value={item?.GeoPosition?.Latitude} location_name={item?.EnglishName} />
                         </div>
                     );
                 })}
