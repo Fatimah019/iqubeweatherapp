@@ -6,6 +6,7 @@ import { addToFavouriteSuccess} from "../../store/weatherRedux/weather_reducer"
 import {useDispatch} from "react-redux"
 import { useHistory } from 'react-router-dom';
 import {AiFillLike} from "react-icons/all"
+import locastorage from '../../services/locastorage';
 
 type Props = {
     city_name: string | null | undefined;
@@ -42,9 +43,16 @@ const SearchPage: React.FC<Props> = ({
 }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const addToFavourite= async()=>{
+
+    const addFav = async ()=>{
         await dispatch(addToFavouriteSuccess(temperature_value, city_name))
         history.push("/")
+    }
+    const addToFavourite= async()=>{
+        let checkDuplicateFavourite = locastorage.get("favourite")
+        addFav()
+        // checkDuplicateFavourite?.find((favourite: { data: { location: { name: any; }; }; }) =>
+        //  (favourite.data?.location?.name) === city_name? console.log("it exist"): addFav())
     }
     return (
         <div className="search_page">

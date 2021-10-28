@@ -3,6 +3,8 @@ import './index.css';
 import {useDispatch} from "react-redux"
 import {addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
 import locastorage from '../../services/locastorage';
+import NotFound from '../../pages/notfound';
+import {AiOutlineCloseCircle} from "react-icons/all"
 
 const WeatherNote: React.FC<{}> = () => {
     const [inputValue, setInputValue] = React.useState('');
@@ -37,9 +39,18 @@ const WeatherNote: React.FC<{}> = () => {
                     onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setInputValue(ev.target.value)}
                 />
             </form>
-            <ul className="note_result">
-                {notes?.map((note: { id: number | null | undefined; note_description: string | null | undefined; })=><li key={note.id}><p onClick={()=>deleteNote(note?.id)}>x</p>{note?.note_description}</li>)}
-            </ul>
+                <ul className="note_result">
+
+                    { !notes ? <NotFound message="No Notes Yet"/>:
+                    notes?.map((note: { id: number | null | undefined; note_description: string | null | undefined; })=>
+                        <li key={note.id}>
+                            <p onClick={()=>deleteNote(note?.id)}>
+                                x
+                            </p>
+                            {note?.note_description}
+                        </li>)
+                    }
+                </ul>
         </>
     );
 };
