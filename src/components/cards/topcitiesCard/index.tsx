@@ -6,7 +6,7 @@ import { ParamsProps, searchWeatherByLocation} from '../../../store/weatherRedux
 
 interface Props {
     icon_color?: Node;
-    lat_value?: number | undefined | null | string;
+    lat_value?: number | undefined | null | string | any;
     location_name?: string | Node | undefined | null | any | number;
 }
 
@@ -27,11 +27,11 @@ const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
     <>
     <div
             className={
-                lat_value === 37
+                lat_value >= 36
                     ? 'hot_card'
-                    : lat_value === 12
+                    : lat_value <= 35
                     ? 'normal_card'
-                    : lat_value === 0
+                    : lat_value <= 10
                     ? 'cold_card'
                     : 'no_category'
             }
