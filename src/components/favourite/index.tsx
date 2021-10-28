@@ -32,7 +32,7 @@ const FavouriteCities: React.FC<{}> = () => {
                     
                     favorites?.sort((a:any, b: { data: { location: { name: any; }; }; })=> {return a.data.location.name.localeCompare(b.data.location.name)}).map((item:any, index:number) => {
                         return (
-                            <div key={index}>
+                            <div key={index} className="favourite_city_card_container_inner">
                                 {/* <AiOutlineCloseCircle onClick={()=>removeTop(item?.Key)}/> */}
                                 <FavouriteCard 
                                     temp_value={item?.data.current.temperature} location_name={item?.data.location.name} 

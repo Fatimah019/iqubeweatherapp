@@ -3,24 +3,28 @@
     background: linear-gradient(154.6deg, #ffd6c9 2.33%, rgba(255, 255, 255, 0) 83.9%), #ffffff;
     box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.2);
     border-radius: 16px;
+    cursor: pointer;
 }
 .normal_card {
     padding: 1rem;
     background: linear-gradient(154.6deg, #c9e5ff 2.33%, rgba(255, 255, 255, 0) 83.9%), #ffffff;
     box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.2);
     border-radius: 16px;
+    cursor: pointer;
 }
 .cold_card {
     padding: 1rem;
     background: linear-gradient(154.6deg, #fff0ca 2.33%, rgba(255, 255, 255, 0) 83.9%), #ffffff;
     box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.2);
     border-radius: 16px;
+    cursor: pointer;
 }
 .no_category {
     padding: 1rem;
     background: #ffffff;
     box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.2);
     border-radius: 16px;
+    cursor: pointer;
 }
 .top_cities_card_star_icon {
     text-align: right;
