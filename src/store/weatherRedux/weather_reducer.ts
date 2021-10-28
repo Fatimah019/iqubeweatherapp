@@ -73,6 +73,9 @@ const weatherSlice = createSlice({
 
             })
         },
+        fetchFavouriteCitiesSuccess: (state, action:PayloadAction<any>) => {
+            state.favourite = action.payload
+        },
         removeFavouriteCitiesSuccess: (state, action: PayloadAction<string>) => {
             state.favourite =state.favourite?.filter((city)=> (city.Key) !== action.payload)
         },
@@ -95,6 +98,7 @@ export const {
     removeNoteCitiesSuccess,
     addToFavouriteSuccess,
     fetchNoteCitiesSuccess,
+    fetchFavouriteCitiesSuccess,
     removeFavouriteCitiesSuccess,
     fetchWeatherStart,
     fetchWeatherFailed,
@@ -128,12 +132,8 @@ export const fetchTopCities = () =>
 
 // selectors
 export const selectLoading = (state: RootState) => state?.weather;
-
 export const selectWeather = (state: RootState) => state?.weather?.data;
 export const selectTopCitiesWeather = (state: RootState) => state?.weather?.topCitiesData;
-
-export const selectNoteWeather = (state: RootState) => state?.weather?.weatherNote;
 export const selectFavourite= (state: RootState) => state?.weather?.favourite;
-
 export const selectNote= (state: RootState) => state?.weather?.weatherNote;
 

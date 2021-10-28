@@ -3,14 +3,15 @@ import './index.css';
 import locastorage from '../../services/locastorage';
 import FavouriteCard from '../cards/favouriteCard';
 import NotFound from '../../pages/notfound';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import {AiOutlineCloseCircle} from "react-icons/all"
-// import {  removeFavouriteCitiesSuccess } from '../../store/weatherRedux/weather_reducer';
+import {  fetchFavouriteCitiesSuccess } from '../../store/weatherRedux/weather_reducer';
 
 
 const FavouriteCities: React.FC<{}> = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const favorites = locastorage.get("favourite")
+    
     // const removeTop=(location_name: string | null | undefined)=>{
     //     dispatch(
     //         removeFavouriteCitiesSuccess(location_name as string),
