@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './index.css';
 import TopCitesCard from '../cards/topcitiesCard';
 import { useDispatch, useSelector } from 'react-redux';
+import {AiOutlineCloseCircle} from "react-icons/all"
 import { fetchTopCities, selectTopCitiesWeather, removeTopCitiesSuccess } from '../../store/weatherRedux/weather_reducer';
 
 const TopCities: React.FC<{}> = () => {
@@ -28,7 +29,10 @@ const TopCities: React.FC<{}> = () => {
                 { weatherInfo?.slice(0, 5)?.map((item) => {
                     return (
                         <div key={item.Key}>
-                            <button onClick={()=>removeTop(item.Key)}>remove</button>
+                            <div className="close_icon">
+                                <AiOutlineCloseCircle onClick={()=>removeTop(item.Key)}/>
+                            </div>
+                           
                             <TopCitesCard 
                              lat_value={item?.GeoPosition.Latitude} location_name={item?.EnglishName} />
                         </div>

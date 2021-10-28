@@ -2,8 +2,10 @@ import React from 'react';
 import './index.css';
 import WeatherCard from '../../components/cards/weatherCard';
 import WeatherNote from '../../components/note';
-import {selectFavourite, addToFavouriteSuccess, addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
-import {useDispatch, useSelector,} from "react-redux"
+import { addToFavouriteSuccess} from "../../store/weatherRedux/weather_reducer"
+import {useDispatch} from "react-redux"
+import { useHistory } from 'react-router-dom';
+import {AiFillLike} from "react-icons/all"
 
 type Props = {
     city_name: string | null | undefined;
@@ -39,7 +41,11 @@ const SearchPage: React.FC<Props> = ({
     visibility,
 }) => {
     const dispatch = useDispatch()
-    // const notes = useSelector(selectNoteWeather)
+    const history = useHistory()
+    const addToFavourite= async()=>{
+        await dispatch(addToFavouriteSuccess(temperature_value, city_name))
+        history.push("/")
+    }
     return (
         <div className="search_page">
             <div className="search_page_header">
@@ -50,7 +56,9 @@ const SearchPage: React.FC<Props> = ({
                 <div className="search_page_header_right">
                     <img src="/assets/icons/cresent.png" alt="" />
                     <h3>{time_updated}</h3>
-                    <button onClick={()=> dispatch(addNoteCitiesSuccess)}>addToFav</button>
+                    <div className="add_to_fav" onClick={addToFavourite}>
+                        <AiFillLike /> <span>Add to favourite</span>
+                    </div>
                 </div>
             </div>
             <div className="search_page_top">

@@ -1,0 +1,19 @@
+.favourite_city_container {
+    width: 50%;
+    margin: 0.5rem auto;
+    overflow-x: auto;
+}
+.favourite_city_card_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.favourite_city_card_header p {
+    margin-left: 10px;
+}
+
+.favourite_city_card_container {
+    display: flex;
+    width: 100%;
+    height: 15rem;
+}

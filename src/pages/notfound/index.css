@@ -1,6 +1,14 @@
 .not_found_page {
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.not_found_page_normal_height{
+    height: 100vh;
+}
+
+.not_found_page_custom_height{
+    height: auto;
+    text-align: center;
 }

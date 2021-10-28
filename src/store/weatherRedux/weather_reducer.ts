@@ -54,16 +54,21 @@ const weatherSlice = createSlice({
         addToFavouriteSuccess: {
             reducer: (state, action: PayloadAction<any>)=>{
                 state.favourite?.push(action.payload)
+                locastorage.set("favourite", state.favourite)
             },
-            prepare:(note_description: string)=>({
+            prepare:(temperature:any, name:any)=>({
                 payload:{
-                    id: uuidv4(),
-                    note_description,
-                    
-                }  as WeatherNoteInterface,
+                    data:{
+                        current: {
+                            temperature,
+                        },
+                        location:{
+                            name
+                        }
+                    } 
+                }  as WeatherInitialState,
 
             })
-          
         },
         fetchWeatherStart: (state, action: PayloadAction<string>) => {
             state.isLoading = true;

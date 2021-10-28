@@ -1,8 +1,7 @@
 import React from 'react';
 import './index.css';
-import {useDispatch, useSelector} from "react-redux"
-import {addNoteCitiesSuccess, removeNoteCitiesSuccess, selectNoteWeather} from "../../store/weatherRedux/weather_reducer"
-import {WeatherNoteInterface} from "../../store/weatherRedux/weather_types"
+import {useDispatch} from "react-redux"
+import {addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
 import locastorage from '../../services/locastorage';
 
 const WeatherNote: React.FC<{}> = () => {
@@ -15,11 +14,14 @@ const WeatherNote: React.FC<{}> = () => {
         setInputValue("")
     };
 
-    const notes = locastorage.get("notes")
+    let notes = locastorage.get("notes")
     const deleteNote = (note_id: any) => {
-        // locastorage.removeItem("note")
-        dispatch(removeNoteCitiesSuccess(note_id))
-        console.log("hey")
+             console.log(notes.length)
+        notes = notes?.filter((id: number)=> (id) !== note_id)
+        // locastorage.set("notes2", notes)
+        if(notes.length === 0){
+            locastorage.removeItem("notes")
+        }
     };
   
     return (

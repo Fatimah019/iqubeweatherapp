@@ -1,6 +1,4 @@
-import { WeatherNoteInterface } from "../../store/weatherRedux/weather_types";
-
-export default {
+const locastorage =  {
     set(key: string, value:any){
         localStorage.setItem(key, JSON.stringify(value))
     },
@@ -12,3 +10,5 @@ export default {
         localStorage.removeItem(`${key}`)
     }
 }
+
+export default locastorage

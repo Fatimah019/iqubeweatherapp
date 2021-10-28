@@ -30,7 +30,11 @@
     margin-right: 10px;
     font-weight: normal;
 }
-
+.add_to_fav{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 /* search page top */
 .search_page_top {
     display: flex;
