@@ -7,21 +7,23 @@ import locastorage from '../../services/locastorage';
 const WeatherNote: React.FC<{}> = () => {
     const [inputValue, setInputValue] = React.useState('');
     const dispatch = useDispatch()
-    
+    let notes = locastorage.get("notes")
+
     const addNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(addNoteCitiesSuccess(inputValue))
         setInputValue("")
     };
 
-    let notes = locastorage.get("notes")
-    const deleteNote = (note_id: any) => {
-             console.log(notes.length)
-        notes = notes?.filter((id: number)=> (id) !== note_id)
+    const deleteNote = async (note_id: any) => {
+        // notes = await notes?.filter((id: number)=> !note_id.include(id))
+        let newNote = [...notes]
+        newNote.splice(1, note_id)
+        locastorage.removeItem("notes2")
         // locastorage.set("notes2", notes)
-        if(notes.length === 0){
-            locastorage.removeItem("notes")
-        }
+        // if(notes.length === 0){
+        //     locastorage.removeItem("notes")
+        // }
     };
   
     return (

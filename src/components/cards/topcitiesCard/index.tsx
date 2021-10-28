@@ -22,12 +22,9 @@ const TopCitesCard: React.FC<Props> = ({ lat_value, location_name }) => {
             } as ParamsProps),
         );
     };
-    // const removeTop=()=>{
-    //     dispatch(removeTopCitiesSuccess(location_name))
-    // }
+   
     return (
     <>
-    {/* <button onClick={()=>removeTop()}>remove</button> */}
     <div
             className={
                 lat_value === 37

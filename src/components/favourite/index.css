@@ -2,6 +2,7 @@
     width: 50%;
     margin: 0.5rem auto;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 .favourite_city_card_header {
     display: flex;

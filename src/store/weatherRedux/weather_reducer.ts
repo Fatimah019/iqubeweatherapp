@@ -70,6 +70,9 @@ const weatherSlice = createSlice({
 
             })
         },
+        removeFavouriteCitiesSuccess: (state, action: PayloadAction<string>) => {
+            state.favourite =state.favourite?.filter((city)=> (city.Key) !== action.payload)
+        },
         fetchWeatherStart: (state, action: PayloadAction<string>) => {
             state.isLoading = true;
         },
@@ -88,6 +91,7 @@ export const {
     addNoteCitiesSuccess,
     removeNoteCitiesSuccess,
     addToFavouriteSuccess,
+    removeFavouriteCitiesSuccess,
     fetchWeatherStart,
     fetchWeatherFailed,
 } = weatherSlice.actions;
