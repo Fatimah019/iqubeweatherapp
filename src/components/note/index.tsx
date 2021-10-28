@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import {useDispatch} from "react-redux"
-import {addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
+import {useDispatch, useSelector} from "react-redux"
+import {addNoteCitiesSuccess, fetchNoteCitiesSuccess, selectNote} from "../../store/weatherRedux/weather_reducer"
 import locastorage from '../../services/locastorage';
 import NotFound from '../../pages/notfound';
 import {AiOutlineCloseCircle} from "react-icons/all"
@@ -9,7 +9,8 @@ import {AiOutlineCloseCircle} from "react-icons/all"
 const WeatherNote: React.FC<{}> = () => {
     const [inputValue, setInputValue] = React.useState('');
     const dispatch = useDispatch()
-    let [notes, setNotes] = useState(locastorage.get("notes"))
+    const mynotes = useSelector(selectNote)
+    let [notes, setNotes] = useState<any>()
 
     const addNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,13 +18,16 @@ const WeatherNote: React.FC<{}> = () => {
         setInputValue("")
     };
 
-    // useEffect(()=>{
-    //     setNotes(locastorage.get("notes"))
-    // }, [notes])
+    console.log("notes", mynotes)
 
-    const deleteNote = async (note_id: any) => {
-        let newNote = notes?.filter((note: { id: any; })=> note.id !== note_id)
-        setNotes(newNote)
+    useEffect(()=>{
+        setNotes(dispatch(fetchNoteCitiesSuccess(locastorage.get("notes"))))
+    }, [])
+
+    // let notes = locastorage.get("notes")
+    // console.log(notes)
+    const deleteNote = async (note_id: number | null | undefined | any | string) => {
+        // setNotes(mynotes?.filter((note: { id: any; })=> note.id !== note_id))
     };
   
     return (
@@ -39,8 +43,8 @@ const WeatherNote: React.FC<{}> = () => {
             </form>
                 <ul className="note_result">
 
-                    { !notes ? <NotFound message="No Notes Yet"/>:
-                    notes?.map((note: { id: number | null | undefined; note_description: string | null | undefined; })=>
+                    { !mynotes ? <NotFound message="No Notes Yet"/>:
+                    mynotes?.map((note: { id: number | null | undefined | any | string; note_description: string | null | undefined; })=>
                         <li key={note.id}>
                             <p onClick={()=>deleteNote(note?.id)}>
                                 x

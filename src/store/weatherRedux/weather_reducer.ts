@@ -40,6 +40,9 @@ const weatherSlice = createSlice({
             })
            
         },
+        fetchNoteCitiesSuccess: (state, action:PayloadAction<any>) => {
+            state.weatherNote = action.payload
+        },
         removeNoteCitiesSuccess: (state, action:PayloadAction<string>) => {
            locastorage.removeItem("notes")
         },
@@ -91,6 +94,7 @@ export const {
     addNoteCitiesSuccess,
     removeNoteCitiesSuccess,
     addToFavouriteSuccess,
+    fetchNoteCitiesSuccess,
     removeFavouriteCitiesSuccess,
     fetchWeatherStart,
     fetchWeatherFailed,
@@ -120,6 +124,8 @@ export const fetchTopCities = () =>
         onStart: fetchWeatherStart.type,
         onError: fetchWeatherFailed.type,
     });
+
+
 // selectors
 export const selectLoading = (state: RootState) => state?.weather;
 
@@ -128,4 +134,6 @@ export const selectTopCitiesWeather = (state: RootState) => state?.weather?.topC
 
 export const selectNoteWeather = (state: RootState) => state?.weather?.weatherNote;
 export const selectFavourite= (state: RootState) => state?.weather?.favourite;
+
+export const selectNote= (state: RootState) => state?.weather?.weatherNote;
 
