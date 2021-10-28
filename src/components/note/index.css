@@ -22,12 +22,13 @@
     box-sizing: border-box;
     border-radius: 8px;
     width: 70%;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.5rem 1rem 0.5rem;
     list-style: none;
-    margin: 1rem 0rem;
+    margin: 0.5rem 0rem;
 }
 .note_result li p {
     text-align: right;
+    margin: 0;
 }
 
 @media (max-width: 600px) {

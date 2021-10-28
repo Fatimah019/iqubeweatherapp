@@ -1,14 +1,17 @@
-import {  WeatherInitialState } from './weather_types';
+import {  WeatherInitialState , WeatherNoteInterface} from './weather_types';
 import { RootState } from '../rootReducer';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apiCallBegan } from '../actions';
+import {v4 as uuidv4} from "uuid"
+import locastorage from '../../services/locastorage';
 
 const initialState: WeatherInitialState = {
     isLoading: false,
     data: undefined,
     error: undefined,
     topCitiesData: [],
-    weatherNote:[]
+    weatherNote:[],
+    favourite:[]
 };
 
 const weatherSlice = createSlice({
@@ -22,13 +25,23 @@ const weatherSlice = createSlice({
         removeTopCitiesSuccess: (state, action: PayloadAction<string>) => {
             state.topCitiesData =state.topCitiesData?.filter((city)=> (city.Key) !== action.payload)
         },
-        addNoteCitiesSuccess: (state, action: PayloadAction<any>) => {
-            // state.weatherNote= state.weatherNote?.push(action.payload)
-            // console.log(state.topCitiesData?.map(city=> city.cityWeatherNote.push(action.payload))
-            // state.topCitiesData = state.topCitiesData?.filter((city)=> (city.GeoPosition.Latitude) !== action.payload)
+        addNoteCitiesSuccess:{
+            reducer: (state, action: PayloadAction<any>)=>{
+                state.weatherNote?.push(action.payload)
+                locastorage.set("notes", state.weatherNote)
+            },
+            prepare:(note_description: string)=>({
+                payload:{
+                    id: uuidv4(),
+                    note_description,
+                    
+                }  as WeatherNoteInterface,
+
+            })
+           
         },
-        removeNoteCitiesSuccess: (state, action) => {
-            state.topCitiesData = state.topCitiesData?.filter((city)=> (city.GeoPosition.Latitude) !== action.payload)
+        removeNoteCitiesSuccess: (state, action:PayloadAction<string>) => {
+           locastorage.removeItem("notes")
         },
         fetchWeatherSuccess: (state, action: PayloadAction<any>) => {
             state.data = action.payload;
@@ -37,6 +50,20 @@ const weatherSlice = createSlice({
         searchWeatherByLocationSuccess: (state, action: PayloadAction<any>) => {
             state.data = action.payload;
             state.isLoading = false;
+        },
+        addToFavouriteSuccess: {
+            reducer: (state, action: PayloadAction<any>)=>{
+                state.favourite?.push(action.payload)
+            },
+            prepare:(note_description: string)=>({
+                payload:{
+                    id: uuidv4(),
+                    note_description,
+                    
+                }  as WeatherNoteInterface,
+
+            })
+          
         },
         fetchWeatherStart: (state, action: PayloadAction<string>) => {
             state.isLoading = true;
@@ -53,6 +80,9 @@ export const {
     removeTopCitiesSuccess,
     fetchWeatherSuccess,
     searchWeatherByLocationSuccess,
+    addNoteCitiesSuccess,
+    removeNoteCitiesSuccess,
+    addToFavouriteSuccess,
     fetchWeatherStart,
     fetchWeatherFailed,
 } = weatherSlice.actions;
@@ -87,3 +117,7 @@ export const selectLoading = (state: RootState) => state?.weather;
 
 export const selectWeather = (state: RootState) => state?.weather?.data;
 export const selectTopCitiesWeather = (state: RootState) => state?.weather?.topCitiesData;
+
+export const selectNoteWeather = (state: RootState) => state?.weather?.weatherNote;
+export const selectFavourite= (state: RootState) => state?.weather?.favourite;
+

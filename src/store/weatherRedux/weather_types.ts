@@ -12,15 +12,18 @@ export type WeatherInitialState = {
     data?: WeatherInterface;
     topCitiesData?: TopCitiesWeatherInterface[];
     weatherNote?:WeatherNoteInterface[]
+    favourite?:FavouriteInterface[]
 };
 
 export type WeatherInterface = {
     location: locationWeatherInterface;
     current: currentWeatherInterface;
     request: requestWeatherInterface;
+    notes: WeatherNoteInterface[]
 };
 export type WeatherNoteInterface = {
-    name: string;
+    id: string | number;
+    note_description: string;
 };
 export type TopCitiesWeatherInterface = {
     Key:string | null | undefined;
@@ -29,6 +32,13 @@ export type TopCitiesWeatherInterface = {
         Latitude: string | null | number | undefined;
     };
 };
+export type FavouriteInterface = {
+    Key:string | null | undefined;
+    EnglishName: string | null | number | undefined;
+    GeoPosition: {
+        Latitude: string | null | number | undefined;
+    };
+}
 export type locationWeatherInterface = {
     country: string;
     name: string;

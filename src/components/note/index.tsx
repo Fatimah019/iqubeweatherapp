@@ -1,18 +1,27 @@
 import React from 'react';
 import './index.css';
+import {useDispatch, useSelector} from "react-redux"
+import {addNoteCitiesSuccess, removeNoteCitiesSuccess, selectNoteWeather} from "../../store/weatherRedux/weather_reducer"
+import {WeatherNoteInterface} from "../../store/weatherRedux/weather_types"
+import locastorage from '../../services/locastorage';
 
-type Props = {
-    searchValue?: string;
-};
-
-const WeatherNote: React.FC<Props> = ({ searchValue }) => {
+const WeatherNote: React.FC<{}> = () => {
     const [inputValue, setInputValue] = React.useState('');
-
+    const dispatch = useDispatch()
+    
     const addNote = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(inputValue);
+        dispatch(addNoteCitiesSuccess(inputValue))
+        setInputValue("")
     };
 
+    const notes = locastorage.get("notes")
+    const deleteNote = (note_id: any) => {
+        // locastorage.removeItem("note")
+        dispatch(removeNoteCitiesSuccess(note_id))
+        console.log("hey")
+    };
+  
     return (
         <>
             <form className="note_field_container" onSubmit={addNote}>
@@ -25,14 +34,7 @@ const WeatherNote: React.FC<Props> = ({ searchValue }) => {
                 />
             </form>
             <ul className="note_result">
-                <li>
-                    <p>x</p>
-                    {inputValue}
-                </li>
-                <li>
-                    <p>x</p>
-                    first note
-                </li>
+                {notes?.map((note: { id: number | null | undefined; note_description: string | null | undefined; })=><li key={note.id}><p onClick={()=>deleteNote(note?.id)}>x</p>{note?.note_description}</li>)}
             </ul>
         </>
     );

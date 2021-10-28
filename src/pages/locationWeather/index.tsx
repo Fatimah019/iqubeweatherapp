@@ -2,6 +2,8 @@ import React from 'react';
 import './index.css';
 import WeatherCard from '../../components/cards/weatherCard';
 import WeatherNote from '../../components/note';
+import {selectFavourite, addToFavouriteSuccess, addNoteCitiesSuccess} from "../../store/weatherRedux/weather_reducer"
+import {useDispatch, useSelector,} from "react-redux"
 
 type Props = {
     city_name: string | null | undefined;
@@ -36,6 +38,8 @@ const SearchPage: React.FC<Props> = ({
     pressure,
     visibility,
 }) => {
+    const dispatch = useDispatch()
+    // const notes = useSelector(selectNoteWeather)
     return (
         <div className="search_page">
             <div className="search_page_header">
@@ -46,7 +50,7 @@ const SearchPage: React.FC<Props> = ({
                 <div className="search_page_header_right">
                     <img src="/assets/icons/cresent.png" alt="" />
                     <h3>{time_updated}</h3>
-                    <button>addToFav</button>
+                    <button onClick={()=> dispatch(addNoteCitiesSuccess)}>addToFav</button>
                 </div>
             </div>
             <div className="search_page_top">
